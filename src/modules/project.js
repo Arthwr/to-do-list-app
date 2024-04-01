@@ -1,10 +1,17 @@
+import TaskManager from "./taskManager";
+
 export default class Project {
   constructor(title, description) {
     this.title = title;
     this.description = description;
-    this.taskList = [];
+    this.taskManager = new TaskManager();
   }
-  addTaskToProject(task) {
-    this.taskList.push(task);
+
+  addTask(task) {
+    const newTask = this.taskManager.assignTaskId(task);
+    this.taskManager.addTask(newTask);
+  }
+  removeTask(taskId) {
+    this.taskManager.removeTask(taskId);
   }
 }

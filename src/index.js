@@ -1,10 +1,18 @@
 import { Task, Project } from "./modules/barrel";
 
-const newProject = new Project("New Cool Project", "Very cool description");
-console.log(newProject);
-newProject.addTaskToProject(
-  new Task("Cool task", "Cool description", "Tomorrow", "High")
+const newProject = new Project("Cool project", "Cool description");
+newProject.addTask(
+  new Task("Cool task!", "Very long descr", "Tomorrow", "High")
 );
-console.log(newProject.taskList);
-const anotherProject = new Project("Not so cool project", "Bad description");
+newProject.addTask(new Task("Uncool task!", "Short descr"));
+
+const anotherProject = new Project("Bad project", "Nice description");
+anotherProject.addTask(new Task("Very cool"));
+
+const moreProject = new Project("Kek project", "Kek descr");
+moreProject.addTask(new Task("Not cool, but else"));
+
+
+console.log(newProject);
 console.log(anotherProject);
+console.log(moreProject);
