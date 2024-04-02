@@ -6,10 +6,10 @@ export default class TaskManager {
   }
 
   assignTaskId(task) {
-    task.id = ++this.#taskIdCounter;
+    task.id = this.#taskIdCounter++;
     return task;
   }
-  addTask(task) {
+  pushTask(task) {
     this.taskList.push(task);
   }
   removeTask(taskId) {

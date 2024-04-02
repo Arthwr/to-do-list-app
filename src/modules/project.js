@@ -7,11 +7,12 @@ export default class Project {
     this.taskManager = new TaskManager();
   }
 
-  addTask(task) {
+  addProjectTask(task) {
     const newTask = this.taskManager.assignTaskId(task);
-    this.taskManager.addTask(newTask);
+    this.taskManager.pushTask(newTask);
   }
-  removeTask(taskId) {
+  removeProjectTask(taskId) {
     this.taskManager.removeTask(taskId);
   }
 }
+  
