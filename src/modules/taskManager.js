@@ -1,12 +1,16 @@
 export default class TaskManager {
-  #taskList = [];
+  #tasksArray = [];
+
+  getTaskList() {
+    return this.#tasksArray;
+  }
 
   pushTask(task) {
-    this.#taskList.push(task);
+    this.#tasksArray.push(task);
   }
   removeTask(taskId) {
-    const index = this.#taskList.findIndex((task) => task.id === taskId);
+    const index = this.#tasksArray.findIndex((task) => task.id === taskId);
     if (index === -1) return null;
-    this.#taskList.splice(index, 1);
+    this.#tasksArray.splice(index, 1);
   }
 }

@@ -1,6 +1,4 @@
 export default class ScreenController {
-  constructor() {}
-
   static getFormData() {
     const formElement = document.getElementById("form");
     const formData = [...formElement.elements].reduce((data, element) => {
@@ -12,10 +10,45 @@ export default class ScreenController {
     return formData;
   }
 
-  static renderProject(project) {
-    const parentContainer = document.querySelector(".p-sidebar-container");
-    const projectTitle = document.createElement("button");
-    parentContainer.appendChild(projectTitle);
-    projectTitle.textContent = project.title;
+  static renderProjectTitle(project) {
+    const sidebarContainer = document.querySelector(".p-sidebar-container");
+    const projectTab = document.createElement("button");
+    projectTab.textContent = project.title;
+    sidebarContainer.appendChild(projectTab);
+    return projectTab;
+  }
+
+  static renderProjectPage(project) {
+    const mainContainer = document.querySelector("main");
+    const projectSection = document.createElement("section");
+    mainContainer.appendChild(projectSection);
+
+    const projectTitle = document.createElement("h2");
+    const projectDescription = document.createElement("p");
+    const toDoContainer = document.createElement("div");
+
+    h2.textContent = project.title;
+    projectDescription.textContent = project.description;
+    toDoContainer.innerHTML = "";
+
+    projectSection.appendChild(projectTitle);
+    projectSection.appendChild(projectDescription);
+    projectSection.appendChild(toDoContainer);
+
+    const ul = document.createElement("ul");
+    toDoContainer.appendChild(ul);
+
+    const tasks = project.taskManager.getTaskList();
+    tasks.forEach((task) => {
+      const li = document.createElement("li");
+      li.textContent = task.title;
+      ul.appendChild(li);
+    });
+  }
+
+  static updateScreen() {
+    // We clean screen on init
+    // We render mock project and mock task
+    // We also retrieve localStorage for saved tasks and render them
   }
 }
