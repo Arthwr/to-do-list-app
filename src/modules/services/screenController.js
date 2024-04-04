@@ -1,6 +1,9 @@
+import modalOverlay from "../components/modalOverlay";
+import projectForm from "../components/projectForm";
+
 export default class ScreenController {
   static getFormData() {
-    const formElement = document.getElementById("form");
+    const formElement = document.querySelector(".form");
     const formData = [...formElement.elements].reduce((data, element) => {
       if (element.name && element.type !== "submit") {
         data[element.name] = element.value;
@@ -10,8 +13,17 @@ export default class ScreenController {
     return formData;
   }
 
+  static renderProjectForm() {
+    const body = document.querySelector("body");
+    const overlay = modalOverlay();
+    const form = projectForm();
+
+    body.appendChild(overlay);
+    body.appendChild(form);
+  }
+
   static renderProjectTitle(project) {
-    const sidebarContainer = document.querySelector(".p-sidebar-container");
+    const sidebarContainer = document.querySelector("#p-sidebar-container");
     const projectTab = document.createElement("button");
     projectTab.textContent = project.title;
     sidebarContainer.appendChild(projectTab);

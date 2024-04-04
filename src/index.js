@@ -1,12 +1,8 @@
-import AppController from "./modules/appController";
-import Project from "./modules/project";
-import Task from "./modules/tasks";
+import "./assets/styles/styles.css";
+import AppController from "./modules/services/appController";
+import ScreenController from "./modules/services/screenController";
+import Project from "./modules/services/project";
+import TaskManager from "./modules/services/taskManager";
+import Task from "./modules/services/tasks";
 
-// prettier-ignore
-
-const newProject = new Project ("Cool Project", "Something something")
-newProject.addProjectTask(
-  new Task("Cool title", "Cool description", "Tomorrow", "High")
-);
-
-console.log(newProject);
+AppController.init(ScreenController, Project, TaskManager, Task);

@@ -1,4 +1,4 @@
-import generateTaskID from "./idGenerator";
+import generateTaskID from "../utilities/idGenerator";
 
 // prettier-ignore
 export default class Task {

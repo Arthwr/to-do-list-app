@@ -11,13 +11,21 @@ export default class AppController {
     AppController.taskManager = taskManagerInstance;
     AppController.task = taskInstance;
 
+    // Render existing projects on load
     const projects = AppController.project.getAllProjects();
-    projects.forEach(project => AppController.screenController.assignProjectTabListener(project));
+    projects.forEach(project => AppController.screenController.assignProjectTab(project));
 
-    const projectSubmitBtn = document.getElementById("p-submit-btn");
-    projectSubmitBtn.addEventListener("click", () => AppController.handleSubmit(e, 'project'));
-    const taskSubmitBtn = document.getElementById("t-submit-btn");
-    taskSubmitBtn.addEventListener("click", () => AppController.handleSubmit(e, 'task'));
+    // Project form call button
+    const projectCreateBtn = document.getElementById("p-create-btn");
+    projectCreateBtn.addEventListener("click", () => AppController.screenController.renderProjectForm());
+
+
+    // Event listeners for project & task buttons
+    // const projectSubmitBtn = document.getElementById("p-submit-btn");
+    // projectSubmitBtn.addEventListener("click", () => AppController.handleSubmit(e, 'project'));
+    
+    // const taskSubmitBtn = document.getElementById("t-submit-btn");
+    // taskSubmitBtn.addEventListener("click", () => AppController.handleSubmit(e, 'task'));
   }
 
   static createNewTask(formData) {
@@ -33,11 +41,11 @@ export default class AppController {
   //prettier-ignore
   static createNewProject(formData) {
     const newProject = new AppController.project(formData.title, formData.description);
-    AppController.assignProjectTabListener(newProject);
+    AppController.assignProjectTab(newProject);
   }
 
   //prettier-ignore
-  static assignProjectTabListener(project) {
+  static assignProjectTab(project) {
     const projectTab = AppController.screenController.renderProjectTitle(project);
     projectTab.addEventListener("click", () => AppController.screenController.renderProjectPage(project));
   }

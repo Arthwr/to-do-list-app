@@ -10,7 +10,7 @@ export default class Project {
     Project.#projectsArray.push(this);
   }
 
-  getAllProjects() {
+  static getAllProjects() {
     return Project.#projectsArray;
   }
 
