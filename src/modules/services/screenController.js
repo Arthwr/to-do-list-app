@@ -2,17 +2,6 @@ import modalOverlay from "../components/modalOverlay";
 import projectForm from "../components/projectForm";
 
 export default class ScreenController {
-  static getFormData() {
-    const formElement = document.querySelector(".form");
-    const formData = [...formElement.elements].reduce((data, element) => {
-      if (element.name && element.type !== "submit") {
-        data[element.name] = element.value;
-      }
-      return data;
-    }, {});
-    return formData;
-  }
-
   static renderProjectForm() {
     const body = document.querySelector("body");
     const overlay = modalOverlay();

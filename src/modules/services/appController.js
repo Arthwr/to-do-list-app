@@ -1,3 +1,5 @@
+import getFormData from "../utilities/getFormData";
+
 export default class AppController {
   static screenController;
   static project;
@@ -22,10 +24,10 @@ export default class AppController {
 
     // Event listeners for project & task buttons
     // const projectSubmitBtn = document.getElementById("p-submit-btn");
-    // projectSubmitBtn.addEventListener("click", () => AppController.handleSubmit(e, 'project'));
+    // projectSubmitBtn.addEventListener("click", () => AppController.handleFormSubmission(e, 'project'));
     
     // const taskSubmitBtn = document.getElementById("t-submit-btn");
-    // taskSubmitBtn.addEventListener("click", () => AppController.handleSubmit(e, 'task'));
+    // taskSubmitBtn.addEventListener("click", () => AppController.handleFormSubmission(e, 'task'));
   }
 
   static createNewTask(formData) {
@@ -50,9 +52,10 @@ export default class AppController {
     projectTab.addEventListener("click", () => AppController.screenController.renderProjectPage(project));
   }
 
-  static handleSubmit(event, type) {
+  static handleFormSubmission(event, type) {
     event.preventDefault();
-    const formData = AppController.screenController.getFormData();
+    const formElement = document.querySelector(".form");
+    const formData = getFormData(formElement);
     if (type === "project") {
       AppController.createNewProject(formData);
     } else if (type === "task") {
