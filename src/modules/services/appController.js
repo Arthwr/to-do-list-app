@@ -21,13 +21,45 @@ export default class AppController {
     const projectCreateBtn = document.getElementById("p-create-btn");
     projectCreateBtn.addEventListener("click", () => AppController.screenController.renderProjectForm());
 
-
     // Event listeners for project & task buttons
-    // const projectSubmitBtn = document.getElementById("p-submit-btn");
-    // projectSubmitBtn.addEventListener("click", () => AppController.handleFormSubmission(e, 'project'));
-    
+    document.addEventListener("submit", (e) => {
+      if(e.target.matches(".form")) {
+        e.preventDefault();
+        AppController.handleFormSubmission(e, "project");
+        const form = e.target;
+        AppController.closeModalForm(e, form);
+      }
+    })
+
+    document.addEventListener("click", (e) => {
+      if (e.target.matches(".p-form-cancel")) {
+        e.preventDefault();
+        const form = e.target.closest(".form");
+        AppController.closeModalForm(e, form);
+      }
+    })
+
     // const taskSubmitBtn = document.getElementById("t-submit-btn");
     // taskSubmitBtn.addEventListener("click", () => AppController.handleFormSubmission(e, 'task'));
+  }
+
+  static closeModalForm(event, form) {
+    event.preventDefault();
+    const overlay = document.querySelector(".bg-overlay");
+    form.remove();
+    overlay.remove();
+  }
+
+  //prettier-ignore
+  static assignProjectTab(project) {
+    const projectTab = AppController.screenController.renderProjectTitle(project);
+    projectTab.addEventListener("click", () => AppController.screenController.renderProjectPage(project));
+  }
+
+  //prettier-ignore
+  static createNewProject(formData) {
+    const newProject = new AppController.project(formData.title, formData.description);
+    AppController.assignProjectTab(newProject);
   }
 
   static createNewTask(formData) {
@@ -38,18 +70,6 @@ export default class AppController {
       formData.priority
     );
     AppController.project.addProjectTask(newTask);
-  }
-
-  //prettier-ignore
-  static createNewProject(formData) {
-    const newProject = new AppController.project(formData.title, formData.description);
-    AppController.assignProjectTab(newProject);
-  }
-
-  //prettier-ignore
-  static assignProjectTab(project) {
-    const projectTab = AppController.screenController.renderProjectTitle(project);
-    projectTab.addEventListener("click", () => AppController.screenController.renderProjectPage(project));
   }
 
   static handleFormSubmission(event, type) {

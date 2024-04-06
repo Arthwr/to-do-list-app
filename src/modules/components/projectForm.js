@@ -24,5 +24,6 @@ export default function projectForm() {
     </div>
   </fieldset>
   `;
+
   return form;
 }
