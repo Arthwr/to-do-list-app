@@ -21,14 +21,16 @@ export default class ScreenController {
 
   static renderProjectPage(project) {
     const mainContainer = document.querySelector("main");
+    mainContainer.innerHTML = "";
     const projectSection = document.createElement("section");
+    projectSection.classList.add("project-page");
     mainContainer.appendChild(projectSection);
 
     const projectTitle = document.createElement("h2");
     const projectDescription = document.createElement("p");
     const toDoContainer = document.createElement("div");
 
-    h2.textContent = project.title;
+    projectTitle.textContent = project.title;
     projectDescription.textContent = project.description;
     toDoContainer.innerHTML = "";
 

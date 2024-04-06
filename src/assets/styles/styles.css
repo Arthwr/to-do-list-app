@@ -8,7 +8,7 @@ aside {
   display: flex;
   flex-direction: column;
   align-items: baseline;
-  flex: 0 1 max(400px, 20vw);
+  flex: 0 1 max(300px, 10vw);
   height: 100vh;
   border-right: 1px solid grey;
 }
@@ -88,4 +88,14 @@ fieldset div:nth-last-child(1) > button {
   outline: none;
   box-shadow: none;
   padding: 0.5rem 1rem;
+}
+
+/* Project Page */
+
+.project-page {
+  padding-left: 1rem;
+}
+
+.project-page > p {
+  color: grey;
 }
