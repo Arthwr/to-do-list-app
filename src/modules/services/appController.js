@@ -5,6 +5,7 @@ export default class AppController {
   static project;
   static taskManager;
   static task;
+  static currentProject = null;
 
   // prettier-ignore
   static init(screenControllerInstance, projectInstance, taskManagerInstance, taskInstance) {
@@ -17,15 +18,23 @@ export default class AppController {
     const projects = AppController.project.getAllProjects();
     projects.forEach(project => AppController.screenController.assignProjectTab(project));
 
-    // Project form call button
-    const projectCreateBtn = document.getElementById("p-create-btn");
-    projectCreateBtn.addEventListener("click", () => AppController.screenController.renderProjectForm());
+    // Project form create button
+    const projectCreateBtn = document.querySelector(".p-create-btn");
+    projectCreateBtn.addEventListener("click", () => AppController.screenController.renderForm("project"));
 
-    // Event listeners for project & task buttons
+    // Task form create button
+    document.addEventListener("click", (e) => {
+      if (e.target.matches(".t-create-btn")) {
+        e.preventDefault();
+        AppController.screenController.renderForm("task");
+      }
+    })
+
+    // Event listeners for project & task form buttons
     document.addEventListener("submit", (e) => {
       if(e.target.matches(".form")) {
         e.preventDefault();
-        AppController.handleFormSubmission(e, "project");
+        AppController.handleFormSubmission(e, e.target);
         const form = e.target;
         AppController.closeModalForm(e, form);
       }
@@ -39,8 +48,12 @@ export default class AppController {
       }
     })
 
-    // const taskSubmitBtn = document.getElementById("t-submit-btn");
-    // taskSubmitBtn.addEventListener("click", () => AppController.handleFormSubmission(e, 'task'));
+    document.addEventListener("click" , (e) => {
+      if (e.target.matches(".t-submit-btn")) {
+        e.preventDefault();
+        AppController.handleFormSubmission(e, "task");
+      }
+    })
   }
 
   static closeModalForm(event, form) {
@@ -50,10 +63,17 @@ export default class AppController {
     overlay.remove();
   }
 
+  static setCurrentProject(project) {
+    this.currentProject = project;
+  }
+
   //prettier-ignore
   static assignProjectTab(project) {
     const projectTab = AppController.screenController.renderProjectTitle(project);
-    projectTab.addEventListener("click", () => AppController.screenController.renderProjectPage(project));
+    projectTab.addEventListener("click", () => {
+      AppController.screenController.renderProjectPage(project);
+      AppController.setCurrentProject(project);
+    });
   }
 
   //prettier-ignore
@@ -69,16 +89,19 @@ export default class AppController {
       formData.dueDate,
       formData.priority
     );
-    AppController.project.addProjectTask(newTask);
+    const project = AppController.currentProject;
+    project.addProjectTask(newTask);
+    AppController.screenController.renderTask(formData);
   }
 
-  static handleFormSubmission(event, type) {
+  static handleFormSubmission(event, formElement) {
     event.preventDefault();
-    const formElement = document.querySelector(".form");
     const formData = getFormData(formElement);
-    if (type === "project") {
+    const formType = formElement.id === "project-form" ? "project" : "task";
+
+    if (formType === "project") {
       AppController.createNewProject(formData);
-    } else if (type === "task") {
+    } else if (formType === "task") {
       AppController.createNewTask(formData);
     }
   }
