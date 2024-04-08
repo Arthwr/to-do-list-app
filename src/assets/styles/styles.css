@@ -1,5 +1,10 @@
 @import url(normalize.css);
 
+:root {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
 body {
   display: flex;
 }
@@ -12,18 +17,20 @@ aside {
   display: flex;
   flex-direction: column;
   align-items: baseline;
-  flex: 0 1 max(300px, 10vw);
+  flex: 0 1 max(350px, 10vw);
   height: 100vh;
   border-right: 1px solid grey;
 }
 
-aside > div {
-  padding-left: 1rem;
-}
-
 h1 {
   margin-top: 0;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
+  font-weight: 500;
+}
+
+h2 {
+  text-transform: capitalize;
+  font-weight: 500;
 }
 
 ul,
@@ -34,6 +41,14 @@ li {
 
 li {
   list-style-type: none;
+}
+
+aside {
+  margin-left: 1rem;
+}
+
+aside > div {
+  width: 100%;
 }
 
 .header {
@@ -67,7 +82,7 @@ fieldset {
   flex-direction: column;
   gap: 1rem;
   padding: 1rem 1rem;
-  background-color: #c0d6df;
+  background-color: #42daaf;
   border: 0;
 }
 
@@ -85,8 +100,11 @@ fieldset div:nth-last-child(1) > button {
   flex-grow: 1;
 }
 
-/* Projects Tab */
+input,textarea {
+  padding: 0.5rem;
+}
 
+/* Projects Tab */
 #p-sidebar-container {
   display: flex;
   flex-direction: column;
@@ -97,17 +115,35 @@ fieldset div:nth-last-child(1) > button {
 
 #p-sidebar-container > button {
   cursor: pointer;
-  background-color: cadetblue;
+  text-transform: capitalize;
+  width: 90%;
+  color: black;
+  background-color: whitesmoke;
+  text-align: start;
   border: 0;
+  border-radius: 4px;
   outline: none;
   box-shadow: none;
-  padding: 0.5rem 1.5rem;
+  padding: 0.5rem 1rem;
+}
+
+.p-create-btn {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border: 0;
+  border-radius: 4px;
+  background-color: #544e61;
+  color: whitesmoke;
+}
+
+.p-create-btn:active {
+  transform: translateY(4px);
 }
 
 /* Project Page */
-
 .project-page {
-  padding-left: 1rem;
+  padding-left: 3rem;
 }
 
 .project-page > p {
@@ -115,7 +151,6 @@ fieldset div:nth-last-child(1) > button {
 }
 
 /* Task container */
-
 .task-container {
   display: flex;
   flex-direction: column;
@@ -138,6 +173,7 @@ fieldset div:nth-last-child(1) > button {
 
 .task-container div {
   display: flex;
+  align-items: center;
   gap: 0.5rem;
 }
 
@@ -152,4 +188,23 @@ fieldset div:nth-last-child(1) > button {
 
 .task-container span {
   color: grey;
+}
+
+.t-create-btn {
+  cursor: pointer;
+  background-color: #09bc8a;
+  color: whitesmoke;
+  padding: 0.5rem 1rem;
+  border: 0;
+  border-radius: 4px;
+}
+
+.t-create-btn:active {
+  transform: translateY(4px);
+}
+
+.delete-task {
+  cursor: pointer;
+  width: 1.5rem;
+  height: 1.5rem;
 }

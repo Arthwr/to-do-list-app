@@ -1,6 +1,7 @@
 import modalOverlay from "../components/modalOverlay";
 import projectForm from "../components/projectForm";
 import taskForm from "../components/taskForm";
+import deleteIcon from "../../assets/images/delete.svg";
 
 export default class ScreenController {
   static renderForm(type) {
@@ -60,6 +61,7 @@ export default class ScreenController {
     const leftDiv = document.createElement("div");
     li.appendChild(leftDiv);
 
+    // Task checkbox and title
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
     const taskLink = document.createElement("button");
@@ -68,12 +70,21 @@ export default class ScreenController {
     leftDiv.appendChild(checkbox);
     leftDiv.appendChild(taskLink);
 
+    // Task date and delete icon
     const rightDiv = document.createElement("div");
     li.appendChild(rightDiv);
 
     const dateSpan = document.createElement("span");
     dateSpan.textContent = formData.dueDate;
+
+    const linkWrap = document.createElement("a");
+    linkWrap.classList.add("delete-task");
+    const img = document.createElement("img");
+    img.src = deleteIcon;
+    linkWrap.appendChild(img);
+
     rightDiv.appendChild(dateSpan);
+    rightDiv.appendChild(linkWrap);
   }
 
   static updateScreen() {
