@@ -100,7 +100,8 @@ fieldset div:nth-last-child(1) > button {
   flex-grow: 1;
 }
 
-input,textarea {
+input,
+textarea {
   padding: 0.5rem;
 }
 
@@ -158,17 +159,25 @@ input,textarea {
   width: max(60ch, 50%);
 }
 
+/* Task rows */
 .task-container > ul {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.8rem;
 }
 
 .task-container li {
   display: flex;
-  justify-content: space-between;
+}
+
+.task-content {
+  display: flex;
   border: 1px solid grey;
-  padding: 0.5rem 0.5rem;
+  border-left: 0;
+  border-radius: 0px 4px 4px 0px;
+  flex: 1;
+  justify-content: space-between;
+  padding: 0.5rem;
 }
 
 .task-container div {
@@ -186,7 +195,7 @@ input,textarea {
   padding: 0;
 }
 
-.task-container span {
+.task-date {
   color: grey;
 }
 
@@ -207,4 +216,22 @@ input,textarea {
   cursor: pointer;
   width: 1.5rem;
   height: 1.5rem;
+}
+
+.priority-marker {
+  flex-grow: 0;
+  width: 1rem;
+  border-radius: 4px 0px 0px 4px;
+}
+
+.priority-marker.low {
+  background-color: #36558f;
+}
+
+.priority-marker.normal {
+  background-color: #248232;
+}
+
+.priority-marker.high {
+  background-color: #c20114;
 }

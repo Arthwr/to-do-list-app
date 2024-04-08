@@ -58,8 +58,22 @@ export default class ScreenController {
     const li = document.createElement("li");
     taskContainer.appendChild(li);
 
+    const priorityMarker = document.createElement("span");
+    priorityMarker.classList.add(
+      "priority-marker",
+      formData.priority.toLowerCase()
+    );
+    const content = document.createElement("div");
+    content.classList.add("task-content");
+
+    li.appendChild(priorityMarker);
+    li.appendChild(content);
+
     const leftDiv = document.createElement("div");
-    li.appendChild(leftDiv);
+    const rightDiv = document.createElement("div");
+
+    content.appendChild(leftDiv);
+    content.appendChild(rightDiv);
 
     // Task checkbox and title
     const checkbox = document.createElement("input");
@@ -67,14 +81,13 @@ export default class ScreenController {
     const taskLink = document.createElement("button");
     taskLink.textContent = formData.title;
 
+    // leftDiv.appendChild(priorityMarker);
     leftDiv.appendChild(checkbox);
     leftDiv.appendChild(taskLink);
 
     // Task date and delete icon
-    const rightDiv = document.createElement("div");
-    li.appendChild(rightDiv);
-
     const dateSpan = document.createElement("span");
+    dateSpan.classList.add("task-date");
     dateSpan.textContent = formData.dueDate;
 
     const linkWrap = document.createElement("a");
