@@ -1,4 +1,4 @@
-import attachFormOverlay from "./modalOverlay";
+import attachFormOverlay from "./formOverlay";
 
 export default function projectForm() {
   // Grey background overlay

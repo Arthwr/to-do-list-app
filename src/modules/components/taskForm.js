@@ -1,4 +1,4 @@
-import attachFormOverlay from "./modalOverlay";
+import attachFormOverlay from "./formOverlay";
 
 export default function taskForm() {
   // Grey background overlay
