@@ -13,6 +13,21 @@ export default class ScreenController {
     body.appendChild(form);
   }
 
+  static renderTaskSummary(currentTask) {
+    const taskRow = document.querySelector(
+      `.task-row[data-task-id="${currentTask.id}"]`
+    );
+    if (!taskRow) return;
+    const taskSummary = document.createElement("div");
+    taskSummary.classList.add("task-info");
+
+    const div = document.createElement("div");
+    taskSummary.appendChild(div);
+
+    div.innerHTML = `<div>${currentTask.description}</div>`;
+    taskRow.insertAdjacentElement("afterend", taskSummary);
+  }
+
   static renderProjectTitle(project) {
     const sidebarContainer = document.querySelector("#p-sidebar-container");
     const projectTab = document.createElement("button");
@@ -66,8 +81,14 @@ export default class ScreenController {
     const content = document.createElement("div");
     content.classList.add("task-content");
 
-    li.appendChild(priorityMarker);
-    li.appendChild(content);
+    const taskRow = document.createElement("div");
+    taskRow.classList.add("task-row");
+    taskRow.dataset.taskId = formData.id;
+
+    taskRow.appendChild(priorityMarker);
+    taskRow.appendChild(content);
+
+    li.appendChild(taskRow);
 
     const leftDiv = document.createElement("div");
     const rightDiv = document.createElement("div");
@@ -79,6 +100,8 @@ export default class ScreenController {
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
     const taskLink = document.createElement("button");
+    taskLink.dataset.taskId = formData.id;
+    taskLink.classList.add("task-summary");
     taskLink.textContent = formData.title;
 
     // leftDiv.appendChild(priorityMarker);

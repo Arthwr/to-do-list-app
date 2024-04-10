@@ -149,6 +149,7 @@ textarea {
 
 .project-page > p {
   color: grey;
+  max-width: 45ch;
 }
 
 /* Task container */
@@ -163,10 +164,10 @@ textarea {
 .task-container > ul {
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
+  gap: 0.5rem;
 }
 
-.task-container li {
+.task-container .task-row {
   display: flex;
 }
 
@@ -180,7 +181,7 @@ textarea {
   padding: 0.5rem;
 }
 
-.task-container div {
+.task-content div {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -234,4 +235,28 @@ textarea {
 
 .priority-marker.high {
   background-color: #c20114;
+}
+
+/* Task summary */
+
+.task-info {
+  display: grid;
+  background-color: #f9f9f9;
+  grid-template-rows: 0fr;
+  border-radius: 0 0 4px 4px;
+  transition: grid-template-rows 0.4s ease-out;
+}
+
+.task-info > div {
+  grid-row: 1 / span 2;
+  overflow: hidden;
+  color: #0a100d;
+}
+
+.task-info div > div {
+  padding: 0.5rem;
+}
+
+.task-info.active {
+  grid-template-rows: 1fr;
 }

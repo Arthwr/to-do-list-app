@@ -54,6 +54,14 @@ export default class AppController {
         AppController.handleFormSubmission(e, "task");
       }
     })
+
+    // Task-summary modal call
+    document.addEventListener("click", (e) => {
+      if (e.target.matches(".task-summary")) {
+        e.preventDefault();
+        AppController.handleTaskSummary(e);
+      }
+    } )
   }
 
   static closeModalForm(event, form) {
@@ -61,6 +69,13 @@ export default class AppController {
     const overlay = document.querySelector(".bg-overlay");
     form.remove();
     overlay.remove();
+  }
+
+  static handleTaskSummary(event) {
+    const taskElement = event.target;
+    const listItem = taskElement.closest("li");
+    const taskInfo = listItem.querySelector(".task-info");
+    taskInfo.classList.toggle("active");
   }
 
   static setCurrentProject(project) {
@@ -91,7 +106,8 @@ export default class AppController {
     );
     const project = AppController.currentProject;
     project.addProjectTask(newTask);
-    AppController.screenController.renderTask(formData);
+    AppController.screenController.renderTask(newTask);
+    AppController.screenController.renderTaskSummary(newTask);
   }
 
   static handleFormSubmission(event, formElement) {
