@@ -1,4 +1,9 @@
+import attachFormOverlay from "./modalOverlay";
+
 export default function taskForm() {
+  // Grey background overlay
+  attachFormOverlay();
+
   const form = document.createElement("form");
   form.id = "task-form";
   form.classList.add("form");

@@ -1,4 +1,9 @@
+import attachFormOverlay from "./modalOverlay";
+
 export default function projectForm() {
+  // Grey background overlay
+  attachFormOverlay();
+
   const form = document.createElement("form");
   form.id = "project-form";
   form.classList.add("form");

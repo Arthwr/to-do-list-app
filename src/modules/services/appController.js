@@ -97,17 +97,13 @@ export default class AppController {
     AppController.assignProjectTab(newProject);
   }
 
+  //prettier-ignore
   static createNewTask(formData) {
-    const newTask = new AppController.task(
-      formData.title,
-      formData.description,
-      formData.dueDate,
-      formData.priority
-    );
+    const { title, description, dueDate, priority } = formData;
+    const newTask = new AppController.task(title, description, dueDate, priority);
     const project = AppController.currentProject;
     project.addProjectTask(newTask);
     AppController.screenController.renderTask(newTask);
-    AppController.screenController.renderTaskSummary(newTask);
   }
 
   static handleFormSubmission(event, formElement) {
