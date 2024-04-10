@@ -24,7 +24,7 @@ export default function projectForm() {
       ></textarea>
     </div>
     <div>
-      <button type="submit">Submit</button>
+      <button type="submit" class="submit">Submit</button>
       <button class="p-form-cancel">Cancel</button>
     </div>
   </fieldset>

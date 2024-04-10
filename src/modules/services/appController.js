@@ -14,58 +14,48 @@ export default class AppController {
     AppController.taskManager = taskManagerInstance;
     AppController.task = taskInstance;
 
-    // Render existing projects on load
-    const projects = AppController.project.getAllProjects();
-    projects.forEach(project => AppController.screenController.assignProjectTab(project));
-
-    // Project form create button
-    const projectCreateBtn = document.querySelector(".p-create-btn");
-    projectCreateBtn.addEventListener("click", () => AppController.screenController.renderForm("project"));
-
-    // Task form create button
+    // Loading logic for buttons
     document.addEventListener("click", (e) => {
-      if (e.target.matches(".t-create-btn")) {
+      if (e.target.matches("button")) {
         e.preventDefault();
+      }
+
+      switch(true) {
+        case e.target.matches(".p-create-btn"):
+        AppController.screenController.renderForm("project");
+        break;
+
+        case e.target.matches(".t-create-btn"):
         AppController.screenController.renderForm("task");
-      }
-    })
-
-    // Event listeners for project & task form buttons
-    document.addEventListener("submit", (e) => {
-      if(e.target.matches(".form")) {
-        e.preventDefault();
-        AppController.handleFormSubmission(e, e.target);
-        const form = e.target;
-        AppController.closeModalForm(e, form);
-      }
-    })
-
-    document.addEventListener("click", (e) => {
-      if (e.target.matches(".p-form-cancel")) {
-        e.preventDefault();
+        break;
+        
+        case e.target.matches(".p-form-cancel"):
         const form = e.target.closest(".form");
-        AppController.closeModalForm(e, form);
-      }
-    })
+        AppController.closeModalForm(form);
+        break;
 
-    document.addEventListener("click" , (e) => {
-      if (e.target.matches(".t-submit-btn")) {
-        e.preventDefault();
-        AppController.handleFormSubmission(e, "task");
-      }
-    })
+        case e.target.matches(".submit"):
+        AppController.handleFormSubmission(e);
+        break;
 
-    // Task-summary modal call
-    document.addEventListener("click", (e) => {
-      if (e.target.matches(".task-summary")) {
-        e.preventDefault();
+        case e.target.matches(".task-summary"):
         AppController.handleTaskSummary(e);
+        break;
+
+        default:
+        break;
       }
-    } )
+    })
   }
 
-  static closeModalForm(event, form) {
-    event.preventDefault();
+  static loadProjects() {
+    const projects = AppController.project.getAllProjects();
+    projects.forEach((project) =>
+      AppController.screenController.assignProjectTab(project)
+    );
+  }
+
+  static closeModalForm(form) {
     const overlay = document.querySelector(".bg-overlay");
     form.remove();
     overlay.remove();
@@ -106,8 +96,8 @@ export default class AppController {
     AppController.screenController.renderTask(newTask);
   }
 
-  static handleFormSubmission(event, formElement) {
-    event.preventDefault();
+  static handleFormSubmission(e) {
+    const formElement = e.target.closest("form");
     const formData = getFormData(formElement);
     const formType = formElement.id === "project-form" ? "project" : "task";
 
@@ -116,5 +106,6 @@ export default class AppController {
     } else if (formType === "task") {
       AppController.createNewTask(formData);
     }
+    AppController.closeModalForm(formElement);
   }
 }
