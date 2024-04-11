@@ -24,8 +24,8 @@ export const sundayProjectDetails = {
       priority: "Normal",
     },
     {
-      title: "Buy food from grocery store",
-      description: "Don't forget to buy milk",
+      title: "Learn Golang",
+      description: '"Check 100 Go Mistakes and How to Avoid Them" book',
       dueDate: "2024-04-11",
       priority: "Low",
     },
