@@ -7,7 +7,6 @@ export default class AppController {
   static task;
   static currentProject = null;
 
-  // prettier-ignore
   static init(screenControllerInstance, projectInstance, taskManagerInstance, taskInstance) {
     AppController.screenController = screenControllerInstance;
     AppController.project = projectInstance;
@@ -42,6 +41,10 @@ export default class AppController {
         AppController.handleTaskSummary(e);
         break;
 
+        case e.target.matches(".delete-task"):
+          AppController.handleTaskRemoval(e);
+        break;
+
         default:
         break;
       }
@@ -68,8 +71,21 @@ export default class AppController {
     taskInfo.classList.toggle("active");
   }
 
+  static handleTaskRemoval(event) {
+    const taskElement = event.target.closest("li");
+    if (!taskElement) return;
+    const taskId = taskElement.querySelector(".task-row").getAttribute("data-task-id");
+    const project = this.getCurrentProject();
+    project.removeProjectTask(taskId);
+    taskElement.remove();
+  }
+
   static setCurrentProject(project) {
     this.currentProject = project;
+  }
+
+  static getCurrentProject() {
+    return this.currentProject;
   }
 
   //prettier-ignore

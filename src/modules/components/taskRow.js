@@ -12,15 +12,11 @@ export default function taskRowTemplate(formData) {
       <div class="task-content">
         <div>
           <input type="checkbox">
-          <button class="task-summary" data-task-id="${formData.id}">${
-    formData.title
-  }</button>
+          <button class="task-summary" data-task-id="${formData.id}">${formData.title}</button>
         </div>
         <div>
           <span class="task-date">${formData.dueDate}</span>
-          <a class="delete-task">
-            <img src="${deleteIcon}" alt="Delete task">
-          </a>
+          <button class="delete-task"></button>
         </div>
       </div>
     </div>

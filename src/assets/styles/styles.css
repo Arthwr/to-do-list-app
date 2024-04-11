@@ -213,10 +213,11 @@ textarea {
   transform: translateY(4px);
 }
 
-.delete-task {
+.task-content .delete-task {
   cursor: pointer;
   width: 1.5rem;
   height: 1.5rem;
+  background-image: url("../images/delete.svg");
 }
 
 .priority-marker {
