@@ -1,12 +1,12 @@
-import projectForm from "../components/projectForm";
-import taskForm from "../components/taskForm";
+import projectFormTemplate from "../components/projectForm";
+import taskFormTemplate from "../components/taskForm";
 import taskRowTemplate from "../components/taskRow";
 import projectPageTemplate from "../components/projectPage";
 
 export default class ScreenController {
   static renderForm(type) {
     const body = document.querySelector("body");
-    const form = type === "project" ? projectForm() : taskForm();
+    const form = type === "project" ? projectFormTemplate() : taskFormTemplate();
     body.appendChild(form);
   }
 
