@@ -63,8 +63,7 @@ export default class AppController {
 
   static handleTaskSummary(event) {
     const taskElement = event.target;
-    const listItem = taskElement.closest("li");
-    const taskInfo = listItem.querySelector(".task-info");
+    const taskInfo = taskElement.closest("li").querySelector(".task-info");
     if (!taskInfo) return;
     taskInfo.classList.toggle("active");
   }
