@@ -246,6 +246,10 @@ textarea {
   transition: grid-template-rows 0.4s ease-out;
 }
 
+.task-info-empty {
+  display: hidden;
+}
+
 .task-info > div {
   grid-row: 1 / span 2;
   overflow: hidden;

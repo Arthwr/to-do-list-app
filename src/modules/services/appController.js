@@ -65,6 +65,7 @@ export default class AppController {
     const taskElement = event.target;
     const listItem = taskElement.closest("li");
     const taskInfo = listItem.querySelector(".task-info");
+    if (!taskInfo) return;
     taskInfo.classList.toggle("active");
   }
 
@@ -80,13 +81,11 @@ export default class AppController {
       AppController.setCurrentProject(project);
     });
   }
-
   //prettier-ignore
   static createNewProject(formData) {
     const newProject = new AppController.project(formData.title, formData.description);
     AppController.assignProjectTab(newProject);
   }
-
   //prettier-ignore
   static createNewTask(formData) {
     const { title, description, dueDate, priority } = formData;
