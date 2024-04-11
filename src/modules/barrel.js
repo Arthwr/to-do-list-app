@@ -1,3 +1,7 @@
-export { default as Task } from "./services/tasks";
-export { default as Project } from "./services/project";
-export { default as ScreenControler } from "./screenControler";
+export { Project, Task, TaskManager } from "./services/model";
+
+import AppController from "./services/appController";
+export { AppController };
+
+import ScreenController from "./services/screenController";
+export { ScreenController };
