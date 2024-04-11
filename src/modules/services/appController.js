@@ -84,6 +84,7 @@ export default class AppController {
   static createNewProject(formData) {
     const newProject = new AppController.project(formData.title, formData.description);
     AppController.assignProjectTab(newProject);
+    return newProject;
   }
   //prettier-ignore
   static createNewTask(formData) {
