@@ -149,7 +149,7 @@ textarea {
 
 .project-page > p {
   color: grey;
-  max-width: 45ch;
+  max-width: 60ch;
 }
 
 /* Task container */
@@ -169,6 +169,15 @@ textarea {
 
 .task-container .task-row {
   display: flex;
+}
+
+.task-row.complete .task-content {
+  opacity: 0.5;
+  text-decoration: line-through;
+}
+
+.task-row.complete button {
+  color: #777;
 }
 
 .task-content {

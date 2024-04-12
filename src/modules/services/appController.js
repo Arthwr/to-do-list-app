@@ -49,6 +49,13 @@ export default class AppController {
         break;
       }
     })
+
+    // Load logic for checkbox
+    document.addEventListener("change", (e) => {
+      if (e.target.type === "checkbox") {
+        AppController.screenController.handleTaskCompletion(e);
+      }
+    });
   }
 
   static loadProjects() {

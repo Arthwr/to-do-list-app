@@ -6,7 +6,8 @@ import projectPageTemplate from "../components/projectPage";
 export default class ScreenController {
   static renderForm(type) {
     const body = document.querySelector("body");
-    const form = type === "project" ? projectFormTemplate() : taskFormTemplate();
+    const form =
+      type === "project" ? projectFormTemplate() : taskFormTemplate();
     body.appendChild(form);
   }
 
@@ -22,7 +23,7 @@ export default class ScreenController {
     const mainContainer = document.querySelector("main");
     mainContainer.innerHTML = "";
     const projectPageElement = projectPageTemplate(project);
-    
+
     mainContainer.appendChild(projectPageElement);
 
     const tasks = project.taskManager.getTaskList();
@@ -36,4 +37,10 @@ export default class ScreenController {
     const taskRowElement = taskRowTemplate(formData);
     taskContainer.appendChild(taskRowElement);
   }
+
+  static handleTaskCompletion(e) {
+    const checkbox = e.target.closest(".task-row");
+    checkbox.classList.toggle("complete");
+  }
 }
+
