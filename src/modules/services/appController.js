@@ -7,7 +7,8 @@ export default class AppController {
   static task;
   static currentProject = null;
 
-  static init(screenControllerInstance, projectInstance, taskManagerInstance, taskInstance) {
+  // prettier-ignore
+  static init( screenControllerInstance, projectInstance, taskManagerInstance, taskInstance) {
     AppController.screenController = screenControllerInstance;
     AppController.project = projectInstance;
     AppController.taskManager = taskManagerInstance;
@@ -19,36 +20,36 @@ export default class AppController {
         e.preventDefault();
       }
 
-      switch(true) {
+      switch (true) {
         case e.target.matches(".p-create-btn"):
-        AppController.screenController.renderForm("project");
-        break;
+          AppController.screenController.renderForm("project");
+          break;
 
         case e.target.matches(".t-create-btn"):
-        AppController.screenController.renderForm("task");
-        break;
-        
+          AppController.screenController.renderForm("task");
+          break;
+
         case e.target.matches(".p-form-cancel"):
-        const form = e.target.closest(".form");
-        AppController.closeModalForm(form);
-        break;
+          const form = e.target.closest(".form");
+          AppController.closeModalForm(form);
+          break;
 
         case e.target.matches(".submit"):
-        AppController.handleFormSubmission(e);
-        break;
+          AppController.handleFormSubmission(e);
+          break;
 
         case e.target.matches(".task-summary"):
-        AppController.handleTaskSummary(e);
-        break;
+          AppController.handleTaskSummary(e);
+          break;
 
         case e.target.matches(".delete-task"):
           AppController.handleTaskRemoval(e);
-        break;
+          break;
 
         default:
-        break;
+          break;
       }
-    })
+    });
 
     // Load logic for checkbox
     document.addEventListener("change", (e) => {
@@ -81,14 +82,21 @@ export default class AppController {
   static handleTaskRemoval(event) {
     const taskElement = event.target.closest("li");
     if (!taskElement) return;
-    const taskId = taskElement.querySelector(".task-row").getAttribute("data-task-id");
+    const taskId = taskElement
+      .querySelector(".task-row")
+      .getAttribute("data-task-id");
     const project = this.getCurrentProject();
     project.removeProjectTask(taskId);
     taskElement.remove();
   }
 
+  // prettier-ignore
   static setCurrentProject(project) {
+    if (this.currentProject && this.currentProject !== project) {
+      AppController.screenController.toggleActiveProjectStyle(this.currentProject, false);
+    }
     this.currentProject = project;
+    AppController.screenController.toggleActiveProjectStyle(project, true);
   }
 
   static getCurrentProject() {
@@ -98,7 +106,7 @@ export default class AppController {
   //prettier-ignore
   static assignProjectTab(project) {
     const projectTab = AppController.screenController.renderProjectTitle(project);
-    projectTab.addEventListener("click", () => {
+    projectTab.addEventListener("click", (e) => {
       AppController.screenController.renderProjectPage(project);
       AppController.setCurrentProject(project);
     });

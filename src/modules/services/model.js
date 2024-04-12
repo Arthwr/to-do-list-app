@@ -1,9 +1,10 @@
-import generateTaskID from "../utilities/idGenerator";
+import generateId from "../utilities/idGenerator";
 
 export class Project {
     static #projectsArray = [];
   
-    constructor(title, description) {
+    constructor(title, description, idGenerator = generateId) {
+      this.id = idGenerator();
       this.title = title;
       this.description = description;
       this.taskManager = new TaskManager();
@@ -23,7 +24,7 @@ export class Project {
   }
 
 export class Task {
-    constructor(title, description, dueDate, priority, idGenerator = generateTaskID) {
+    constructor(title, description, dueDate, priority, idGenerator = generateId) {
       this.id = idGenerator();
       this.title = title;
       this.description = description;

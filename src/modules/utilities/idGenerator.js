@@ -1,5 +1,5 @@
-let taskIdCounter = 0;
+let idCounter = 0;
 
 export default function generateTaskID() {
-  return ++taskIdCounter;
+  return ++idCounter;
 }

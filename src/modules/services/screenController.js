@@ -15,6 +15,7 @@ export default class ScreenController {
     const sidebarContainer = document.querySelector("#p-sidebar-container");
     const projectTab = document.createElement("button");
     projectTab.textContent = project.title;
+    projectTab.setAttribute("data-project-id", project.id);
     sidebarContainer.appendChild(projectTab);
     return projectTab;
   }
@@ -42,5 +43,12 @@ export default class ScreenController {
     const checkbox = e.target.closest(".task-row");
     checkbox.classList.toggle("complete");
   }
-}
 
+  static toggleActiveProjectStyle(project, setActive) {
+    const projectTab = document.querySelector(`#p-sidebar-container > button[data-project-id="${project.id}"]`);
+    if (!projectTab) return;
+    setActive  
+      ? projectTab.classList.add("active")
+      : projectTab.classList.remove("active");
+  }
+}

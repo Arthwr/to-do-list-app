@@ -126,6 +126,11 @@ textarea {
   outline: none;
   box-shadow: none;
   padding: 0.5rem 1rem;
+  transition: background-color 0.5s ease;
+}
+
+#p-sidebar-container button.active {
+  background-color: #ffe66d;
 }
 
 .p-create-btn {
