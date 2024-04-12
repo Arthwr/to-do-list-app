@@ -12,7 +12,7 @@ export default function projectForm() {
     <legend>Your new project</legend>
     <div>
       <label for="title">Title</label>
-      <input type="text" name="title" id="title" required />
+      <input type="text" name="title" id="title" minlength="3" maxlength="20" required />
     </div>
     <div>
       <label for="description">Description</label>

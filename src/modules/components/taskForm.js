@@ -12,7 +12,7 @@ export default function taskForm() {
       <legend>Your new task</legend>
       <div>
         <label for="title">Title</label>
-        <input type="text" name="title" id="title" required />
+        <input type="text" name="title" id="title" minlength="3" maxlength="50" required />
       </div>
       <div>
         <label for="description">Notes</label>

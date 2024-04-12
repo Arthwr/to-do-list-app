@@ -14,12 +14,8 @@ export default class AppController {
     AppController.taskManager = taskManagerInstance;
     AppController.task = taskInstance;
 
-    // Loading logic for buttons
+    // UI
     document.addEventListener("click", (e) => {
-      if (e.target.matches("button")) {
-        e.preventDefault();
-      }
-
       switch (true) {
         case e.target.matches(".p-create-btn"):
           AppController.screenController.renderForm("project");
@@ -32,10 +28,6 @@ export default class AppController {
         case e.target.matches(".p-form-cancel"):
           const form = e.target.closest(".form");
           AppController.closeModalForm(form);
-          break;
-
-        case e.target.matches(".submit"):
-          AppController.handleFormSubmission(e);
           break;
 
         case e.target.matches(".task-summary"):
@@ -51,7 +43,12 @@ export default class AppController {
       }
     });
 
-    // Load logic for checkbox
+    // Form submission
+    document.addEventListener("submit", (e) => {
+      AppController.handleFormSubmission(e);
+    })
+
+    // Task checkbox
     document.addEventListener("change", (e) => {
       if (e.target.type === "checkbox") {
         AppController.screenController.handleTaskCompletion(e);
@@ -106,7 +103,7 @@ export default class AppController {
   //prettier-ignore
   static assignProjectTab(project) {
     const projectTab = AppController.screenController.renderProjectTitle(project);
-    projectTab.addEventListener("click", (e) => {
+    projectTab.addEventListener("click", () => {
       AppController.screenController.renderProjectPage(project);
       AppController.setCurrentProject(project);
     });
