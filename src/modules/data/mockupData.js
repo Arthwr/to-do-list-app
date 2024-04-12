@@ -1,6 +1,6 @@
 // Weekday project
-export const weekdayProjectDetails = {
-  title: "Weekday",
+export const tuesdayProjectDetails = {
+  title: "Tuesday",
   description: "Most tragedies are born from inaction",
   tasks: [
     {
