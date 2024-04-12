@@ -1,5 +1,3 @@
-import deleteIcon from "../../assets/images/delete.svg";
-
 export default function taskRowTemplate(formData) {
   const li = document.createElement("li");
 
