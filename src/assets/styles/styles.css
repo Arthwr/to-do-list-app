@@ -32,6 +32,9 @@ h1 {
 h2 {
   text-transform: capitalize;
   font-weight: 500;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 4px;
 }
 
 ul,
@@ -140,8 +143,8 @@ textarea {
   cursor: pointer;
   border: 0;
   border-radius: 4px;
-  background-color: #42438A;
-  color: #FFFFFF;
+  background-color: #42438a;
+  color: #ffffff;
 }
 
 .p-create-btn:active {
@@ -151,6 +154,46 @@ textarea {
 /* Project Page */
 .project-page {
   padding-left: 3rem;
+}
+
+.project-page > div:nth-child(1) {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  min-height: 40px;
+}
+
+.dropdown-menu {
+  width: 0;
+  overflow: hidden;
+  display: flex;
+  gap: 0.5rem;
+  color: black;
+  transition: width 0.5s;
+  background-color: #d8e2dc;
+  border-radius: 4px;
+}
+
+.dropdown-menu.open {
+  width: auto;
+  padding: 8px;
+}
+
+.dropdown-menu > button {
+  cursor: pointer;
+  background: none;
+  color: #0A0903;
+  border: 0;
+}
+
+.p-edit-btn {
+  cursor: pointer;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 0;
+  background: no-repeat url("../images/edit-p.svg");
 }
 
 .project-page > p {

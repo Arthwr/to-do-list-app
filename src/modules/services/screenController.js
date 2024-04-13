@@ -2,6 +2,7 @@ import projectFormTemplate from "../components/projectForm";
 import taskFormTemplate from "../components/taskForm";
 import taskRowTemplate from "../components/taskRow";
 import projectPageTemplate from "../components/projectPage";
+import dropdownMenu from "../components/dropdownMenu";
 
 export default class ScreenController {
   static renderForm(type) {
@@ -33,6 +34,12 @@ export default class ScreenController {
     });
   }
 
+  static openEditMenu() {
+    const menu = document.querySelector(".dropdown-menu");
+    if (!menu) return;
+    menu.classList.toggle("open");
+  }
+
   static renderTask(formData) {
     const taskContainer = document.querySelector(".task-container > ul");
     const taskRowElement = taskRowTemplate(formData);
@@ -45,9 +52,11 @@ export default class ScreenController {
   }
 
   static toggleActiveProjectStyle(project, setActive) {
-    const projectTab = document.querySelector(`#p-sidebar-container > button[data-project-id="${project.id}"]`);
+    const projectTab = document.querySelector(
+      `#p-sidebar-container > button[data-project-id="${project.id}"]`
+    );
     if (!projectTab) return;
-    setActive  
+    setActive
       ? projectTab.classList.add("active")
       : projectTab.classList.remove("active");
   }

@@ -26,7 +26,7 @@ export default class AppController {
           break;
 
         case e.target.matches(".p-form-cancel"):
-          const form = e.target.closest(".form");
+          const form = e.target.closest(".form"); 
           AppController.closeModalForm(form);
           break;
 
@@ -37,6 +37,9 @@ export default class AppController {
         case e.target.matches(".delete-task"):
           AppController.handleTaskRemoval(e);
           break;
+
+        case e.target.matches(".p-edit-btn"):
+          AppController.screenController.openEditMenu()
 
         default:
           break;
