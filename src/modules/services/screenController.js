@@ -2,7 +2,6 @@ import projectFormTemplate from "../components/projectForm";
 import taskFormTemplate from "../components/taskForm";
 import taskRowTemplate from "../components/taskRow";
 import projectPageTemplate from "../components/projectPage";
-import dropdownMenu from "../components/dropdownMenu";
 
 export default class ScreenController {
   static renderForm(type) {
