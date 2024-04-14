@@ -4,10 +4,10 @@ export default function projectPageTemplate(project) {
   section.innerHTML = `
        <div>
         <h2>${project.title}</h2>
-        <button class="p-edit-btn"></button>
+        <button class="p-menu"></button>
         <div class="dropdown-menu">
-          <button>Edit</button>
-          <button>Delete</button>
+          <button class="p-edit">Edit</button>
+          <button class="p-delete">Delete</button>
         </div>
        </div>
        <p>${project.description}</p>

@@ -38,7 +38,7 @@ export default class AppController {
           AppController.handleTaskRemoval(e);
           break;
 
-        case e.target.matches(".p-edit-btn"):
+        case e.target.matches(".p-menu"):
           AppController.screenController.openEditMenu()
 
         default:

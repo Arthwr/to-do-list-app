@@ -34,7 +34,6 @@ h2 {
   font-weight: 500;
   margin-top: 0;
   margin-bottom: 0;
-  padding: 4px;
 }
 
 ul,
@@ -188,7 +187,7 @@ textarea {
   border: 0;
 }
 
-.p-edit-btn {
+.p-menu {
   cursor: pointer;
   width: 1.5rem;
   height: 1.5rem;
