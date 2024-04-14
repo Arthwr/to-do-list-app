@@ -40,6 +40,11 @@ export default class AppController {
 
         case e.target.matches(".p-menu"):
           AppController.screenController.openEditMenu()
+          break;
+
+        case e.target.matches(".p-delete"):
+          AppController.handleProjectRemoval();
+          break;
 
         default:
           break;
@@ -88,6 +93,12 @@ export default class AppController {
     const project = this.getCurrentProject();
     project.removeProjectTask(taskId);
     taskElement.remove();
+  }
+
+  static handleProjectRemoval() {
+    const project = this.getCurrentProject();
+    AppController.project.removeProject(project.id);
+    AppController.screenController.removeProjectPageAndTitle();
   }
 
   // prettier-ignore

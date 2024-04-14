@@ -14,6 +14,12 @@ export class Project {
     static getAllProjects() {
       return Project.#projectsArray;
     }
+
+    static removeProject(projectId) {
+      const index = this.#projectsArray.findIndex((project) => project.id == projectId)
+      if (index === -1) return null;
+      this.#projectsArray.splice(index, 1)
+    }
   
     addProjectTask(task) {
       this.taskManager.pushTask(task);
@@ -46,10 +52,5 @@ export class TaskManager {
       const index = this.#tasksArray.findIndex((task) => task.id == taskId);
       if (index === -1) return null;
       this.#tasksArray.splice(index, 1);
-    }
-    getTaskById(taskId) {
-      const taskList = this.getTaskList();
-      const resultTask = taskList.find((task) => task.id == taskId);
-      return resultTask;
     }
   }

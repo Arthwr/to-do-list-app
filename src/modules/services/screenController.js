@@ -40,6 +40,15 @@ export default class ScreenController {
     menu.classList.toggle("open");
   }
 
+  static removeProjectPageAndTitle() {
+    const mainContainer = document.querySelector("main");
+    const activeTab = document.querySelector(
+      "#p-sidebar-container > button.active"
+    );
+    mainContainer.innerHTML = "";
+    activeTab.remove();
+  }
+
   static renderTask(formData) {
     const taskContainer = document.querySelector(".task-container > ul");
     const taskRowElement = taskRowTemplate(formData);
