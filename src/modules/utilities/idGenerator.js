@@ -1,5 +1,12 @@
-let idCounter = 0;
+let idCounter = 6;
 
-export default function generateTaskID() {
-  return ++idCounter;
+if (localStorage.getItem("idCounter")) {
+  idCounter = Number(localStorage.getItem("idCounter"));
+}
+
+export default function generateId() {
+  const newId = ++idCounter;
+  console.log("generated id")
+  localStorage.setItem("idCounter", idCounter.toString());
+  return newId;
 }

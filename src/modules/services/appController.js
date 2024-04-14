@@ -123,8 +123,8 @@ export default class AppController {
     });
   }
   //prettier-ignore
-  static createNewProject(formData) {
-    const newProject = new AppController.project(formData.title, formData.description);
+  static createNewProject(formData, id = null) {
+    const newProject = new AppController.project(formData.title, formData.description, id);
     AppController.assignProjectTab(newProject);
     return newProject;
   }

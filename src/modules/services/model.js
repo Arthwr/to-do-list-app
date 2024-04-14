@@ -3,8 +3,8 @@ import generateId from "../utilities/idGenerator";
 export class Project {
     static #projectsArray = [];
   
-    constructor(title, description, idGenerator = generateId) {
-      this.id = idGenerator();
+    constructor(title, description, id = null) {
+      this.id = id !== null ? id : generateId();  // Use provided id if available, generate new one otherwise.
       this.title = title;
       this.description = description;
       this.taskManager = new TaskManager();
@@ -30,8 +30,8 @@ export class Project {
   }
 
 export class Task {
-    constructor(title, description, dueDate, priority, idGenerator = generateId) {
-      this.id = idGenerator();
+    constructor(title, description, dueDate, priority, id = null) {
+      this.id = id !== null ? id : generateId(); // Use provided id if available, generate new one otherwise.
       this.title = title;
       this.description = description;
       this.dueDate = dueDate;
