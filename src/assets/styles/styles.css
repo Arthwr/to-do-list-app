@@ -84,9 +84,20 @@ fieldset {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  padding: 1rem 1rem;
-  background-color: #42daaf;
+  padding: 2rem 2rem;
+  border-radius: 4px;
   border: 0;
+  font-size: 1.5rem;
+}
+
+#project-form > fieldset {
+  background-color: #d81e5b;
+  color: #f9f9f9;
+}
+
+#task-form > fieldset {
+  background-color: #09bc8a;
+  color: #000000;
 }
 
 fieldset div {
@@ -143,6 +154,7 @@ textarea {
   background-color: #ffe66d;
 }
 
+form button,
 .p-create-btn,
 .save-btn {
   padding: 0.5rem 1rem;
@@ -152,6 +164,13 @@ textarea {
   border-radius: 4px;
   color: #ffffff;
   background-color: #d81e5b;
+}
+
+#task-form button,
+#project-form button {
+  background-color: #f9f9f9;
+  color: #0a0903;
+  font-size: 1.5rem;
 }
 
 .save-btn {
