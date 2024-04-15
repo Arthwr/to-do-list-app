@@ -9,8 +9,7 @@ AppController.init(ScreenController, Project, TaskManager, Task);
 // Load initial projects & tasks
 loadMockData(sundayProjectDetails, AppController, Task);
 loadMockData(tuesdayProjectDetails, AppController, Task);
-console.log(Project.getAllProjects());
-const projectList = localStorage.getItem('projects');
-console.log(projectList);
+
+AppController.loadProjects();
 
 // To do: function to load projects from localStorage if it exists. 

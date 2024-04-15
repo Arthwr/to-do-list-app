@@ -1,6 +1,6 @@
 export default function loadMockData(projectDetails, AppController, Task) {
-  // To add: if local storage "projects" exist currently, we skip loading mockup data, but rather rely on another function
-  // that will load projects from localStorage on init. 
+  if (localStorage.getItem("projects")) return;
+
   const project = AppController.createNewProject(projectDetails, projectDetails.id);
   projectDetails.tasks.forEach((taskDetails) => {
     const task = new Task(
@@ -13,3 +13,4 @@ export default function loadMockData(projectDetails, AppController, Task) {
     project.addProjectTask(task);
   });
 }
+ 

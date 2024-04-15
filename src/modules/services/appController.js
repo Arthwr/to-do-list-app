@@ -69,10 +69,24 @@ export default class AppController {
   }
 
   static loadProjects() {
-    const projects = AppController.project.getAllProjects();
-    projects.forEach((project) =>
-      AppController.screenController.assignProjectTab(project)
-    );
+    if (!localStorage.getItem("projects")) return;
+
+    const storedData = localStorage.getItem("projects");
+    const projects = JSON.parse(storedData);
+
+    projects.forEach((project) => {
+      const newProject = AppController.createNewProject(project, project.id);
+      project.taskList.forEach((taskData) => {
+        const newTask = new AppController.task(
+          taskData.title,
+          taskData.description,
+          taskData.dueDate,
+          taskData.priority,
+          taskData.id
+        );
+        newProject.addProjectTask(newTask);
+      });
+    });
   }
 
   static closeModalForm(form) {
@@ -157,7 +171,7 @@ export default class AppController {
 
   static updateLocalStorage() {
     const projectList = AppController.project.getAllProjects();
-    const serializedProject = projectList.map(project => project.serialize());
+    const serializedProject = projectList.map((project) => project.serialize());
     localStorage.setItem("projects", JSON.stringify(serializedProject));
   }
 }
