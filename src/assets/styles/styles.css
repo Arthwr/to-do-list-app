@@ -109,6 +109,13 @@ textarea {
 }
 
 /* Projects Tab */
+
+.header > div {
+  display: flex;
+  gap: 1rem;
+  align-items: baseline;
+}
+
 #p-sidebar-container {
   display: flex;
   flex-direction: column;
@@ -136,17 +143,22 @@ textarea {
   background-color: #ffe66d;
 }
 
-.p-create-btn {
+.p-create-btn,
+.save-btn {
   padding: 0.5rem 1rem;
   font-size: 1rem;
   cursor: pointer;
   border: 0;
   border-radius: 4px;
-  background-color: #42438a;
   color: #ffffff;
+  background-color: #d81e5b;
 }
 
-.p-create-btn:active {
+.save-btn {
+  background-color: #42438a;
+}
+
+.p-create-btn:active, .save-btn:active {
   transform: translateY(4px);
 }
 
@@ -183,7 +195,7 @@ textarea {
 .dropdown-menu > button {
   cursor: pointer;
   background: none;
-  color: #0A0903;
+  color: #0a0903;
   border: 0;
 }
 

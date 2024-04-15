@@ -39,13 +39,17 @@ export default class AppController {
           break;
 
         case e.target.matches(".p-menu"):
-          AppController.screenController.openEditMenu()
+          AppController.screenController.openEditMenu();
           break;
 
         case e.target.matches(".p-delete"):
           AppController.handleProjectRemoval();
           break;
 
+        case e.target.matches(".save-btn"):
+          AppController.updateLocalStorage();
+          break;
+          
         default:
           break;
       }
@@ -138,6 +142,7 @@ export default class AppController {
   }
 
   static handleFormSubmission(e) {
+    e.preventDefault();
     const formElement = e.target.closest("form");
     const formData = getFormData(formElement);
     const formType = formElement.id === "project-form" ? "project" : "task";
@@ -148,5 +153,11 @@ export default class AppController {
       AppController.createNewTask(formData);
     }
     AppController.closeModalForm(formElement);
+  }
+
+  static updateLocalStorage() {
+    const projectList = AppController.project.getAllProjects();
+    const serializedProject = projectList.map(project => project.serialize());
+    localStorage.setItem("projects", JSON.stringify(serializedProject));
   }
 }
