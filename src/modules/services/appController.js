@@ -74,16 +74,10 @@ export default class AppController {
     const storedData = localStorage.getItem("projects");
     const projects = JSON.parse(storedData);
 
-    projects.forEach((project) => {
-      const newProject = AppController.createNewProject(project, project.id);
-      project.taskList.forEach((taskData) => {
-        const newTask = new AppController.task(
-          taskData.title,
-          taskData.description,
-          taskData.dueDate,
-          taskData.priority,
-          taskData.id
-        );
+    projects.forEach((projectObj) => {
+      const newProject = AppController.createNewProject({...projectObj});
+      projectObj.taskList.forEach((taskData) => {
+        const newTask = new AppController.task({ ...taskData });
         newProject.addProjectTask(newTask);
       });
     });
@@ -141,15 +135,14 @@ export default class AppController {
     });
   }
   //prettier-ignore
-  static createNewProject(formData, id = null) {
-    const newProject = new AppController.project(formData.title, formData.description, id);
+  static createNewProject(formData) {
+    const newProject = new AppController.project({...formData});
     AppController.assignProjectTab(newProject);
     return newProject;
   }
   //prettier-ignore
   static createNewTask(formData) {
-    const { title, description, dueDate, priority } = formData;
-    const newTask = new AppController.task(title, description, dueDate, priority);
+    const newTask = new AppController.task({...formData});
     const project = AppController.currentProject;
     project.addProjectTask(newTask);
     AppController.screenController.renderTask(newTask);

@@ -3,7 +3,7 @@ import generateId from "../utilities/idGenerator";
 export class Project {
   static #projectsArray = [];
 
-  constructor(title, description, id = null) {
+  constructor({title, description, id = null}) {
     this.title = title;
     this.description = description;
     this.id = id !== null ? id : generateId(); // Use provided id if available, generate new one otherwise.
@@ -41,7 +41,7 @@ export class Project {
 }
 
 export class Task {
-  constructor(title, description, dueDate, priority, id = null) {
+  constructor({title, description, dueDate, priority, id = null}) {
     this.title = title;
     this.description = description;
     this.dueDate = dueDate;
