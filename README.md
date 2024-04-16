@@ -5,6 +5,14 @@ A simple to-do-list app built with following tech:
 * Webpack (self-configured)
 * Vanilla JS modules
 
+Functionality:
+* You can create/delete/edit projects.
+* Each project have a separte list of tasks, where you can also create individual task under that project.
+  
+    * Each task can be completed or deleted.
+    * You can set a due date and priority for each task. Priority is indicated by color: red for high, green for medium, and blue for low.
+      
+* All data (projects, tasks, and their states) can be saved using the "Save All" button to the browser's local storage. Upon the next browser session or reload, the data will be automatically imported and retained
 
 ## Overview
 
