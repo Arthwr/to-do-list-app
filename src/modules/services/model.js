@@ -26,6 +26,7 @@ export class Project {
   addProjectTask(task) {
     this.taskManager.pushTask(task);
   }
+  
   removeProjectTask(taskId) {
     this.taskManager.removeTask(taskId);
   }
@@ -66,9 +67,11 @@ export class TaskManager {
   getTaskList() {
     return this.#tasksArray;
   }
+
   pushTask(task) {
     this.#tasksArray.push(task);
   }
+
   removeTask(taskId) {
     const index = this.#tasksArray.findIndex((task) => task.id == taskId);
     if (index === -1) return null;

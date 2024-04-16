@@ -55,12 +55,10 @@ export default class AppController {
       }
     });
 
-    // Form submission
     document.addEventListener("submit", (e) => {
       AppController.handleFormSubmission(e);
     })
 
-    // Task checkbox
     document.addEventListener("change", (e) => {
       if (e.target.type === "checkbox") {
         AppController.screenController.handleTaskCompletion(e);

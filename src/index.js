@@ -6,10 +6,7 @@ import loadMockData from "./modules/utilities/loadMockData";
 // Initialize app
 AppController.init(ScreenController, Project, TaskManager, Task);
 
-// Load initial projects & tasks
 loadMockData(sundayProjectDetails, AppController, Task);
 loadMockData(tuesdayProjectDetails, AppController, Task);
 
 AppController.loadProjects();
-
-// To do: function to load projects from localStorage if it exists. 
