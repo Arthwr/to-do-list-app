@@ -20,6 +20,10 @@ export default class AppController {
         case e.target.matches(".p-create-btn"):
           AppController.screenController.renderForm("project");
           break;
+        
+        case e.target.matches(".p-edit"):
+          AppController.screenController.renderForm("project", true);
+          break;
 
         case e.target.matches(".t-create-btn"):
           AppController.screenController.renderForm("task");
@@ -159,9 +163,16 @@ export default class AppController {
     const formElement = e.target.closest("form");
     const formData = getFormData(formElement);
     const formType = formElement.id === "project-form" ? "project" : "task";
+    const isEdit = formElement.getAttribute("data-form-type") === "edit";
 
     if (formType === "project") {
-      AppController.createNewProject(formData);
+      if (isEdit) {
+        const currentProject = AppController.getCurrentProject();
+        AppController.currentProject.updateProjectDetails({ ...formData });
+        AppController.screenController.editProjectTitle(currentProject);
+      } else {
+        AppController.createNewProject(formData);
+      }
     } else if (formType === "task") {
       AppController.createNewTask(formData);
     }

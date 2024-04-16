@@ -23,6 +23,14 @@ export class Project {
     this.#projectsArray.splice(index, 1);
   }
 
+  updateProjectDetails(data) {
+    for (const key in data) {
+      if (this.hasOwnProperty(key)) {
+        this[key] = data[key];
+      }
+    }
+  }
+
   addProjectTask(task) {
     this.taskManager.pushTask(task);
   }
