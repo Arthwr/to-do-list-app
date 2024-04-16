@@ -29,7 +29,7 @@ I've tried to design application's architecture with several principles and patt
 ## Live preview 
 You can check out this hosted project at: https://arthwr.github.io/to-do-list-app/
 
-## Gallery
+## Img preview
 
 ![todo-app-preview](https://github.com/Arthwr/to-do-list-app/assets/132221421/6dd9c627-f8c3-430a-afa7-7e351d6509f1)
 
