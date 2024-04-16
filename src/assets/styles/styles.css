@@ -91,13 +91,13 @@ fieldset {
 }
 
 #project-form > fieldset {
-  background-color: #d81e5b;
-  color: #f9f9f9;
+  background-color: #f8cedc;
+  color: #112A46;
 }
 
 #task-form > fieldset {
-  background-color: #09bc8a;
-  color: #000000;
+  background-color: #0BF4B2;
+  color: #112A46;
 }
 
 fieldset div {
