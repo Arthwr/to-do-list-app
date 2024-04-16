@@ -3,7 +3,7 @@ import generateId from "../utilities/idGenerator";
 export class Project {
   static #projectsArray = [];
 
-  constructor({title, description, id = null}) {
+  constructor({ title, description, id = null }) {
     this.title = title;
     this.description = description;
     this.id = id !== null ? id : generateId(); // Use provided id if available, generate new one otherwise.
@@ -26,7 +26,7 @@ export class Project {
   addProjectTask(task) {
     this.taskManager.pushTask(task);
   }
-  
+
   removeProjectTask(taskId) {
     this.taskManager.removeTask(taskId);
   }
@@ -42,12 +42,17 @@ export class Project {
 }
 
 export class Task {
-  constructor({title, description, dueDate, priority, id = null}) {
+  constructor({ title, description, dueDate, priority, id = null, isComplete = false }) {
     this.title = title;
     this.description = description;
     this.dueDate = dueDate;
     this.priority = priority;
     this.id = id !== null ? id : generateId(); // Use provided id if available, generate new one otherwise.
+    this.isComplete = isComplete;
+  }
+
+  setTaskStatus() {
+    this.isComplete = !this.isComplete; 
   }
 
   serialize() {
@@ -57,6 +62,7 @@ export class Task {
       dueDate: this.dueDate,
       priority: this.priority,
       id: this.id,
+      isComplete: this.isComplete,
     };
   }
 }
@@ -70,6 +76,10 @@ export class TaskManager {
 
   pushTask(task) {
     this.#tasksArray.push(task);
+  }
+
+  findTask(taskId) {
+    return this.#tasksArray.find((task) => task.id == taskId);
   }
 
   removeTask(taskId) {

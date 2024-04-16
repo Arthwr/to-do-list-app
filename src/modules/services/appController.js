@@ -61,7 +61,7 @@ export default class AppController {
 
     document.addEventListener("change", (e) => {
       if (e.target.type === "checkbox") {
-        AppController.screenController.handleTaskCompletion(e);
+        AppController.handleTaskCompletion(e);
       }
     });
   }
@@ -73,7 +73,7 @@ export default class AppController {
     const projects = JSON.parse(storedData);
 
     projects.forEach((projectObj) => {
-      const newProject = AppController.createNewProject({...projectObj});
+      const newProject = AppController.createNewProject({ ...projectObj });
       projectObj.taskList.forEach((taskData) => {
         const newTask = new AppController.task({ ...taskData });
         newProject.addProjectTask(newTask);
@@ -92,6 +92,14 @@ export default class AppController {
     const taskInfo = taskElement.closest("li").querySelector(".task-info");
     if (!taskInfo) return;
     taskInfo.classList.toggle("active");
+  }
+
+  static handleTaskCompletion(e) {
+    const taskElement = e.target.closest(".task-row");
+    const taskId = taskElement.getAttribute("data-task-id");
+    const project = AppController.getCurrentProject();
+    project.taskManager.findTask(taskId)?.setTaskStatus();
+    AppController.screenController.toggleTaskCompletion(taskElement);
   }
 
   static handleTaskRemoval(event) {

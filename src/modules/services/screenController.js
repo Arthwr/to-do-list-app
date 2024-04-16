@@ -54,9 +54,8 @@ export default class ScreenController {
     taskContainer.appendChild(taskRowElement);
   }
 
-  static handleTaskCompletion(e) {
-    const checkbox = e.target.closest(".task-row");
-    checkbox.classList.toggle("complete");
+  static toggleTaskCompletion(element) {
+    element.classList.toggle("complete");
   }
 
   static toggleActiveProjectStyle(project, setActive) {
